@@ -32,5 +32,8 @@ fivefruits = fruits[0:5]
 print(fivefruits)
 
 # Print out the new sliced list using a for loop
-for i in fivefruits:
-    print(i)
+def sfh():
+    for i in fivefruits:
+        print(i)
+
+sfh()
