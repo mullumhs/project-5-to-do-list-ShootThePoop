@@ -1,17 +1,48 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-                                GUESSING GAME
----------------------------------------------------------------------------------
-- File Name: to-do-list.py
-- Teacher: David Steedman
-- Class: Software Engineering
-- Description: Complete a functional dice roller app in Python.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+import random
 import time
+
+def diceroller():
+
+
+    def get_number(prompt):
+        while True:
+            try:
+                number = int(input(prompt))  # Convert input to integer
+                if number > 0:  # Ensure the number is positive
+                    return number
+                else:
+                    print("Please enter a positive number.")
+            except ValueError:
+                print("Invalid input. Please enter a whole number.")
+
+
+    def roll(sides, qty):
+        total = 0
+        for i in range(1, qty):
+            time.sleep(0.4)
+            rnd = random.randint(1, sides)
+            total = total + rnd
+            print(f"Rolled: {rnd}")
+        time.sleep(0.5)
+        print(f"The total is {total}.")
+        
+
+    sides = get_number("How many sides would you like the dice to have?: ")
+    qty = get_number("How many dice would you like to roll?: ")
+
+
+    print("Rolling the dice...")
+    time.sleep(0.2)
+    roll(sides, qty+1)
+    print("Back to the main menu...")
+    time.sleep(1.5)
+    run()
+
 
 
 todolist = []
 
-def menu():
+def run():
     print("Please select an option:")
     print("1. Add something to the list")
     print("2. Delete something from the list")
@@ -33,7 +64,7 @@ def choice():
             if choice == 4:
                 return choice
             if choice == 5:
-                break
+                diceroller()
             else:
                 print("Please enter a number between 1 and 3")
 
@@ -61,7 +92,7 @@ def delete():
 
 def edit():
     print("What would you like to edit?")
-
+    viewlist()
     remove = input()
     try:
         remove = todolist.index(remove)
@@ -80,7 +111,7 @@ def viewlist():
 
 
 while True:
-    menu()
+    run()
     ch = choice()
     if ch == 1:
         add()
@@ -90,6 +121,3 @@ while True:
         edit()
     if ch == 4:
         viewlist()
-    if ch == 5:
-        break
-
